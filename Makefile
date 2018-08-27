@@ -8,15 +8,13 @@ BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
 clean:
 	rm -f ${APP}
 
-build:
-	clean
+build: clean
 	go build \
 		-ldflags "-s -w -X ${PROJECT}/version.Release=${RELEASE} \
 		-X ${PROJECT}/version.Commit=${COMMIT} -X ${PROJECT}/version.BuildTime=${BUILD_TIME}" \
 		-o ${APP}
 
-run:
-	build
+run: build
 	PORT=${PORT} ./${APP}
 
 test:
