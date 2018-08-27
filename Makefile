@@ -12,7 +12,7 @@ build:
 	clean
 	go build \
 		-ldflags "-s -w -X ${PROJECT}/version.Release=${RELEASE} \
-		-X ${PROJECT}/version.Commit=${COMMIT} -X ${PROJECT}/version.BuildTime=${BUILD_TIME} \
+		-X ${PROJECT}/version.Commit=${COMMIT} -X ${PROJECT}/version.BuildTime=${BUILD_TIME}" \
 		-o ${APP}
 
 run:
