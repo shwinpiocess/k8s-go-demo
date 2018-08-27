@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/shwinpiocess/k8s-go-demo/handlers/version"
+	"github.com/shwinpiocess/k8s-go-demo/version"
 )
 
 func home(w http.ResponseWriter, _ *http.Request) {
