@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/shwinpiocess/k8s-go-demo/handlers"
-	"github.com/shwinpiocess/k8s-go-demo/handlers/version"
+	"github.com/shwinpiocess/k8s-go-demo/version"
 )
 
 func main() {
