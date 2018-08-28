@@ -6,14 +6,16 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/shwinpiocess/k8s-go-demo/handlers/version"
+	"time"
 )
 
 func TestHome(t *testing.T) {
 	w := httptest.NewRecorder()
-	version.Release = "test version"
-	home(w, nil)
+	buildTime := time.Now().Format("20180828_10:50:51")
+	commit := "some test hash"
+	release := "0.0.8"
+	h := home(buildTime, commit, release)
+	h(w, nil)
 
 	resp := w.Result()
 	if have, want := resp.StatusCode, http.StatusOK; have != want {
@@ -34,7 +36,13 @@ func TestHome(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if info.Release != version.Release {
-		t.Errorf("Release verison is wrong. Have: %s, want: %s", info.Release, version.Release)
+	if info.Release != release {
+		t.Errorf("Release verison is wrong. Have: %s, want: %s", info.Release, release)
+	}
+	if info.BuildTime != buildTime {
+		t.Errorf("Build time is wrong. Have: %s, want: %s", info.BuildTime, buildTime)
+	}
+	if info.Commit != commit {
+		t.Errorf("Commit is wrong. Have: %s, want: %s", info.Commit, commit)
 	}
 }
