@@ -22,7 +22,7 @@ container: build
 	docker build -t ${CONTAINER_IMAGE}:${RELEASE} .
 
 run: container
-	docker stop ${CONTAINER_IMAGE}:${RELEASE} || true && dokcer rm ${CONTAINER_IMAGE}:${RELEASE} || true
+	docker stop ${CONTAINER_IMAGE}:${RELEASE} || true && docker rm ${CONTAINER_IMAGE}:${RELEASE} || true
 	docker run --name ${APP} -p ${PORT}:${PORT} --rm -e "PORT=${PORT}" ${CONTAINER_IMAGE}:${RELEASE}
 
 push: container
