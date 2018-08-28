@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-
-	"github.com/shwinpiocess/k8s-go-demo/version"
 )
 
 func home(buildTime, commit, release string) http.HandlerFunc {
@@ -15,7 +13,7 @@ func home(buildTime, commit, release string) http.HandlerFunc {
 			Commit    string `json:"commit"`
 			Release   string `json:"release"`
 		}{
-			version.BuildTime, version.Commit, version.Release,
+			buildTime, commit, release,
 		}
 
 		body, err := json.Marshal(info)

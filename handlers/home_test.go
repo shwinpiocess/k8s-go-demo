@@ -11,7 +11,7 @@ import (
 
 func TestHome(t *testing.T) {
 	w := httptest.NewRecorder()
-	buildTime := time.Now().Format("20180828_10:50:51")
+	buildTime := time.Now().Format("20060102_03:04:05")
 	commit := "some test hash"
 	release := "0.0.8"
 	h := home(buildTime, commit, release)
@@ -19,7 +19,7 @@ func TestHome(t *testing.T) {
 
 	resp := w.Result()
 	if have, want := resp.StatusCode, http.StatusOK; have != want {
-		t.Errorf("Status code is wrong. Have: %d, want: %d", have, want)
+		t.Errorf("Status code is wrong. Have: %d, want: %d.", have, want)
 	}
 
 	greeting, err := ioutil.ReadAll(resp.Body)
@@ -37,7 +37,7 @@ func TestHome(t *testing.T) {
 		t.Fatal(err)
 	}
 	if info.Release != release {
-		t.Errorf("Release verison is wrong. Have: %s, want: %s", info.Release, release)
+		t.Errorf("Release version is wrong. Have: %s, want: %s", info.Release, release)
 	}
 	if info.BuildTime != buildTime {
 		t.Errorf("Build time is wrong. Have: %s, want: %s", info.BuildTime, buildTime)
