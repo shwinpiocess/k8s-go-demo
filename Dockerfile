@@ -1,4 +1,4 @@
-FROM scratch
+FROM docker.oa.com:8080/public/centos:tools
 
 ENV PORT 8000
 EXPOSE ${PORT}
